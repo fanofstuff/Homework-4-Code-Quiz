@@ -21,7 +21,6 @@ var quizTitleText = document.getElementById("quiz-title");
 var quizStartText = document.getElementById("quiz-start-text");
 var quizStartButton = document.getElementById("start-button");
 
-
 var timeLeft = 0;
 
 timerEl.textContent = ": " + timeLeft;
@@ -50,12 +49,12 @@ var questions = [
   },
   {
     question: "3) Arrays in Javascript can be used to store ____. ",
-    options: {
-      a: "1. numbers and strings",
-      b: "2. other arrays",
-      c: "3. booleans",
-      d: "4. all of the above"
-    },
+    options: [
+      "1. numbers and strings",
+      "2. other arrays",
+      "3. booleans",
+      "4. all of the above"
+    ],
     answer: "d"
   },
   {
@@ -83,9 +82,6 @@ var questions = [
 ];
 // place this timer within the function to run the questions
 
-
-
-
 function countdownTimer() {
   timeLeft = 75;
 
@@ -104,30 +100,28 @@ function countdownTimer() {
     }
   }, 1000);
 }
+console.log (questions[0].options)
+function buttonCreator() {
+  for (i = 0; i < questions[0].options.length; i++) {
+    console.log (questions[0].options.length); 
+    // var buttonAnswers = document.createElement("BUTTON"); 
+    // buttonAnswers.setAttribute("class", "btn btn-primary btn-sm"); 
+    // buttonAnswers.setAttribute("data-button", options[i]); 
+    // buttonAnswers.innerHTML = options[i]; 
+    // quizBody.appendChild(buttonAnswers); 
 
-
-
-function buttonCreator(questions) {
-  for (i = 0; i < 4; i++) {
-    // var letterBtn = $("<button>");
-    //       // 3. Then give each "letterBtn" the following classes: "letter-button" "letter" "letter-button-color".
-    //       letterBtn.addClass("letter-button letter letter-button-color");
-    //       // 4. Then give each "letterBtn" an attribute called "data-letter", with a value eqaual to "letters[i]"
-    //       letterBtn.attr("data-letter", letters[i]);
-    //       // 5. Then give each "letterBtn" a text equal to "letters[i]".
-    //       letterBtn.text(letters[i]);
-    //       // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
-    //       letterBtn.appendTo("#buttons");
   }
 }
 
 function quizStartSelect() {
-    quizTitleText.innerHTML = questions[0].question; 
-
+  quizTitleText.innerHTML = questions[0].question;
 }
 
 quizStartButton.addEventListener("click", function() {
   countdownTimer();
-  quizTitleText.innerHTML = questions[0].question; 
-  
+  quizTitleText.innerHTML = questions[0].question;
+  quizStartText.setAttribute("class", "collapse"); 
+  buttonCreator(); 
+
+  quizStartButton.innerHTML
 });
