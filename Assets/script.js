@@ -25,61 +25,6 @@ var timeLeft = 0;
 
 timerEl.textContent = ": " + timeLeft;
 
-var questions = [
-  {
-    question: "1) Commonly used data types DO NOT include: ",
-    options: {
-      a: "1. strings",
-      b: "2. booleans",
-      c: "3. alerts",
-      d: "4. numbers"
-    },
-    answer: "c"
-  },
-  {
-    question:
-      "2) The condition in an if/else statement is enclosed within ____.",
-    options: {
-      a: "1. quotes",
-      b: "2. curly brackets",
-      c: "3. parentheses",
-      d: "4. square brackets"
-    },
-    answer: "c"
-  },
-  {
-    question: "3) Arrays in Javascript can be used to store ____. ",
-    options: [
-      "1. numbers and strings",
-      "2. other arrays",
-      "3. booleans",
-      "4. all of the above"
-    ],
-    answer: "d"
-  },
-  {
-    question:
-      "4) String values must be enclosed within ____ when being assigned variables.",
-    options: {
-      a: "1. commas",
-      b: "2. curly brackets",
-      c: "3. quotes",
-      d: "4. parentheses"
-    },
-    answer: "c"
-  },
-  {
-    question:
-      "5) A very useful tool used during development and debugging for printing content to the debugger is ____.",
-    options: {
-      a: "1. JavaScript",
-      b: "2. terminal/bash",
-      c: "3. for loops",
-      d: "4. console.log"
-    },
-    answer: "d"
-  }
-];
 // place this timer within the function to run the questions
 
 function countdownTimer() {
@@ -100,28 +45,90 @@ function countdownTimer() {
     }
   }, 1000);
 }
-console.log (questions[0].options)
-function buttonCreator() {
-  for (i = 0; i < questions[0].options.length; i++) {
-    console.log (questions[0].options.length); 
-    // var buttonAnswers = document.createElement("BUTTON"); 
-    // buttonAnswers.setAttribute("class", "btn btn-primary btn-sm"); 
-    // buttonAnswers.setAttribute("data-button", options[i]); 
-    // buttonAnswers.innerHTML = options[i]; 
-    // quizBody.appendChild(buttonAnswers); 
-
-  }
-}
 
 function quizStartSelect() {
   quizTitleText.innerHTML = questions[0].question;
+  quizStartText.setAttribute("class", "collapse");
+  quizStartButton.setAttribute("class", "collapse"); 
+}
+
+var questionOneAnswers = [
+  "1. strings",
+  "2. booleans",
+  "3. alerts",
+  "4. numbers"
+];
+var questionTwoAnswers = [
+  "1. quotes",
+  "2. curly brackets",
+  "3. parentheses",
+  "4. square brackets"
+];
+var questionThreeAnswers = [
+  "1. numbers and strings",
+  "2. other arrays",
+  "3. booleans",
+  "4. all of the above"
+];
+var questionFourAnswers = [
+  "1. commas",
+  "2. curly brackets",
+  "3. quotes",
+  "4. parentheses"
+];
+var questionFiveAnswers = [
+  "1. JavaScript",
+  "2. terminal/bash",
+  "3. for loops",
+  "4. console.log"
+];
+
+var questions = [
+    {
+      question: "1) Commonly used data types DO NOT include: ",
+      answer: "c"
+    },
+    {
+      question:
+        "2) The condition in an if/else statement is enclosed within ____.",
+      answer: "c"
+    },
+    {
+      question: "3) Arrays in Javascript can be used to store ____. ",
+      answer: "d"
+    },
+    {
+      question:
+        "4) String values must be enclosed within ____ when being assigned variables.",
+      answer: "c"
+    },
+    {
+      question:
+        "5) A very useful tool used during development and debugging for printing content to the debugger is ____.",
+      answer: "d"
+    }
+  ]; 
+
+function createFirstButtons() {
+  console.log(questionOneAnswers.length);
+  for (i = 0; i < questionOneAnswers.length; i++) {
+    var lineBreaker = document.createElement("div");
+    lineBreaker.setAttribute("class", "row m-1");
+    quizBody.appendChild(lineBreaker);
+    var firstButtons = document.createElement("button");
+    firstButtons.setAttribute(
+      "class",
+      "btn btn-primary btn-sm button-left-margin"
+    );
+    firstButtons.setAttribute("data-answer", questionOneAnswers[i]);
+    firstButtons.innerHTML = questionOneAnswers[i];
+    lineBreaker.appendChild(firstButtons);
+  }
 }
 
 quizStartButton.addEventListener("click", function() {
   countdownTimer();
-  quizTitleText.innerHTML = questions[0].question;
-  quizStartText.setAttribute("class", "collapse"); 
-  buttonCreator(); 
+  quizStartSelect();
+  createFirstButtons();
 
-  quizStartButton.innerHTML
 });
