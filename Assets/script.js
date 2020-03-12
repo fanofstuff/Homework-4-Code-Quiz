@@ -20,7 +20,8 @@ var quizFooter = document.getElementById("quiz-footer");
 var quizTitleText = document.getElementById("quiz-title");
 var quizStartText = document.getElementById("quiz-start-text");
 var quizStartButton = document.getElementById("start-button");
-var enterInitials = document.querySelector(".enter-initials"); 
+var enterInitials = document.querySelector(".enter-initials");
+var submitEl = document.querySelector(".submit");
 var timeLeft = 0;
 
 timerEl.textContent = ": " + timeLeft;
@@ -273,7 +274,7 @@ function declareScore() {
 }
 
 function enterHighScoreInitials() {
-    enterInitials.setAttribute("class", "collapse.show")
+  enterInitials.setAttribute("class", "collapse.show");
 }
 
 function eventListenerWorkaroundFive() {
@@ -286,14 +287,18 @@ function eventListenerWorkaroundFive() {
   }
   quizTitleText.innerHTML = "And that's it!";
   declareScore();
-  enterHighScoreInitials(); 
+  enterHighScoreInitials();
 }
 
-function clearHighscores() {
+submitEl.addEventListener("click", function(event) {
+  event.preventDefault();
+});
 
-}
+// function clearHighscores() {
 
-function saveHighscores() {
-    
-    localStorage.setItem ()
-}
+// }
+
+// function saveHighscores() {
+
+//     localStorage.setItem ()
+// }
