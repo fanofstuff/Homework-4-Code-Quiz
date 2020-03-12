@@ -20,6 +20,7 @@ var quizFooter = document.getElementById("quiz-footer");
 var quizTitleText = document.getElementById("quiz-title");
 var quizStartText = document.getElementById("quiz-start-text");
 var quizStartButton = document.getElementById("start-button");
+var enterInitials = document.querySelector(".enter-initials"); 
 var timeLeft = 0;
 
 timerEl.textContent = ": " + timeLeft;
@@ -33,10 +34,9 @@ function countdownTimer() {
     timerEl.textContent = ": " + timeLeft;
     timeLeft--;
 
-    if (timeLeft < 0 | quizTitleText.textContent === "And that's it!") {
+    if ((timeLeft < 0) | (quizTitleText.textContent === "And that's it!")) {
       clearInterval(timeInterval);
       highscoreBar.setAttribute("class", "collapse");
-      finalScore = timeLeft;
     }
   }, 1000);
 }
@@ -74,16 +74,14 @@ var questionFiveAnswers = [
 
 var questions = [
   {
-    question: 
-      "1) Commonly used data types DO NOT include: "
+    question: "1) Commonly used data types DO NOT include: "
   },
   {
     question:
       "2) The condition in an if/else statement is enclosed within ____."
   },
   {
-    question: 
-      "3) Arrays in Javascript can be used to store ____."
+    question: "3) Arrays in Javascript can be used to store ____."
   },
   {
     question:
@@ -266,6 +264,18 @@ function eventListenerWorkaroundFour() {
   createFifthButtons();
 }
 
+function declareScore() {
+  var finalScoreTag = document.createElement("p");
+  var finalScore = timeLeft;
+  finalScoreTag.innerHTML = "Your final score is " + finalScore + "!";
+  quizBody.appendChild(finalScoreTag);
+  quizBody.setAttribute("class", "col text-center");
+}
+
+function enterHighScoreInitials() {
+    enterInitials.setAttribute("class", "collapse.show")
+}
+
 function eventListenerWorkaroundFive() {
   var answerCheck = this.getAttribute("data-answer");
   if (answerCheck !== "4. console.log") {
@@ -275,9 +285,15 @@ function eventListenerWorkaroundFive() {
     quizBody.removeChild(quizBody.lastChild);
   }
   quizTitleText.innerHTML = "And that's it!";
-  var divCollector = document.createElement("div");
-  divCollector.setAttribute("class", "delete-me");
-  quizBody.appendChild(divCollector);
+  declareScore();
+  enterHighScoreInitials(); 
 }
 
+function clearHighscores() {
 
+}
+
+function saveHighscores() {
+    
+    localStorage.setItem ()
+}
